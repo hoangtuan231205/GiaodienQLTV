@@ -24,6 +24,14 @@ jobs:
             exit 1
           fi
           echo "Cấu trúc Frontend hợp lệ!"
+      - name: Chạy kiểm thử giao diện với Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          start: npx serve . -p 3000
+          wait-on: "http://localhost:3000"
+          # Bổ sung thêm 2 dòng này bên dưới chữ with để ép không dùng cache cũ:
+          cache-key: cypress-cache-${{ github.sha }}
+          create-cache: false
 
   deploy-to-render:
     name: Tự động đưa lên Render
