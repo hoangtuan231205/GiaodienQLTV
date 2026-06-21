@@ -29,9 +29,9 @@ jobs:
         with:
           start: npx serve . -p 3000
           wait-on: "http://localhost:3000"
-          # Bổ sung thêm 2 dòng này bên dưới chữ with để ép không dùng cache cũ:
           cache-key: cypress-cache-${{ github.sha }}
-          create-cache: false
+          # BỔ SUNG DÒNG NÀY ĐỂ TẮT TỰ ĐỘNG CÀI ĐẶT (XÓA BỎ LỖI LOCKFILE):
+          install: false
 
   deploy-to-render:
     name: Tự động đưa lên Render
