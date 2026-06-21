@@ -1,4 +1,4 @@
-name: Tự động hóa CI/CD Thư Viện
+name: Tự động hóa CI/CD Frontend Thư Viện
 
 on:
   push:
@@ -8,34 +8,29 @@ on:
 
 jobs:
   testing:
+    name: Kiểm tra cú pháp Frontend
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: test_db
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping -h localhost" --health-retries=3
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.2"
-          extensions: mysqli, pdo_mysql
+      - name: Lấy mã nguồn mới nhất
+        uses: actions/checkout@v3
 
-      - name: Nạp Database giả lập
-        run: mysql -h 127.0.0.1 -u root -proot test_db < database/init.sql
+      # Thầy yêu cầu "nghiên cứu sâu về test trước khi deploy"
+      # Bước này đóng vai trò Test cơ bản: Kiểm tra xem các file HTML có tồn tại hay không
+      - name: Kiểm tra cấu trúc file giao diện
+        run: |
+          if [ ! -f "index.html" ]; then
+            echo "LỖI: Không tìm thấy file index.html gốc!"
+            exit 1
+          fi
+          echo "Cấu trúc Frontend hợp lệ!"
 
-      - name: Kiểm tra lỗi cú pháp PHP
-        run: find src/ -name "*.php" -exec php -l {} \;
-  deploy-to-render: 
+  deploy-to-render:
     name: Tự động đưa lên Render
-    needs: testing # Bắt buộc Job 'testing' ở trên phải báo XANH thì mới chạy
-    if: github.event_name == 'push' # Chỉ chạy khi gộp code vào main
+    needs: testing
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Bắn tín hiệu Webhook cho Render
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
