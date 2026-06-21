@@ -1,0 +1,49 @@
+name: Thuc thi Cypress E2E Tests
+
+# Tự động chạy khi có code mới đẩy lên nhánh main
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Lấy mã nguồn từ GitHub
+        uses: actions/checkout@v4
+
+      - name: Cài đặt môi trường Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      # Cài đặt Cypress và thư viện serve để chạy file HTML
+      - name: Cài đặt Dependencies
+        run: |
+          npm install cypress --save-dev
+          npm install serve --save-dev
+
+      - name: Khởi chạy Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          # Bật server frontend nội bộ ở cổng 3000
+          start: npx serve . -p 3000
+
+          # Đợi server frontend khởi động xong mới bắt đầu test
+          wait-on: "http://localhost:3000"
+
+          # Cấu hình baseUrl linh hoạt trỏ về server nội bộ này
+          config: baseUrl=http://localhost:3000
+
+          browser: chrome
+
+      # Lưu lại video quay màn hình nếu test thất bại để dễ debug
+      - name: Lưu Video khi test lỗi
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos

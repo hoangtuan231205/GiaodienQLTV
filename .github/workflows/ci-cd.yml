@@ -1,0 +1,41 @@
+name: Tự động hóa CI/CD Thư Viện
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping -h localhost" --health-retries=3
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mysqli, pdo_mysql
+
+      - name: Nạp Database giả lập
+        run: mysql -h 127.0.0.1 -u root -proot test_db < database/init.sql
+
+      - name: Kiểm tra lỗi cú pháp PHP
+        run: find src/ -name "*.php" -exec php -l {} \;
+  deploy-to-render: 
+    name: Tự động đưa lên Render
+    needs: testing # Bắt buộc Job 'testing' ở trên phải báo XANH thì mới chạy
+    if: github.event_name == 'push' # Chỉ chạy khi gộp code vào main
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Bắn tín hiệu Webhook cho Render
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
