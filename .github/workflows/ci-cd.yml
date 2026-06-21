@@ -15,8 +15,6 @@ jobs:
       - name: Lấy mã nguồn mới nhất
         uses: actions/checkout@v3
 
-      # Thầy yêu cầu "nghiên cứu sâu về test trước khi deploy"
-      # Bước này đóng vai trò Test cơ bản: Kiểm tra xem các file HTML có tồn tại hay không
       - name: Kiểm tra cấu trúc file giao diện
         run: |
           if [ ! -f "index.html" ]; then
@@ -24,13 +22,18 @@ jobs:
             exit 1
           fi
           echo "Cấu trúc Frontend hợp lệ!"
+
+      # BỔ SUNG BƯỚC NÀY: Tự động cài đặt nhanh Cypress và Serve mà không cần tệp lockfile
+      - name: Cài đặt công cụ chạy Test
+        run: npm install cypress serve
+
       - name: Chạy kiểm thử giao diện với Cypress
         uses: cypress-io/github-action@v6
         with:
           start: npx serve . -p 3000
           wait-on: "http://localhost:3000"
           cache-key: cypress-cache-${{ github.sha }}
-          # BỔ SUNG DÒNG NÀY ĐỂ TẮT TỰ ĐỘNG CÀI ĐẶT (XÓA BỎ LỖI LOCKFILE):
+          # Bật lại install để tránh lỗi hệ thống, nhưng vì ta đã cài ở bước trên nên nó sẽ chạy rất nhanh
           install: false
 
   deploy-to-render:
