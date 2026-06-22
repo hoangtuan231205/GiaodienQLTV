@@ -114,6 +114,32 @@ class BorrowForm {
      * @param {Function} options.onSubmit - Callback when form is submitted
      * @returns {Promise<HTMLElement>} - Modal form DOM element
      */
+    static async create(options = {}) {
+        const { book = null, books = null, mode = 'single', onSubmit = null } = options;
+
+        // Validate inputs based on mode
+        if (mode === 'single' && !book) {
+            throw new Error('Book object is required for single mode');
+        }
+        if (mode === 'selection' && !books) {
+            throw new Error('Books array is required for selection mode');
+        }
+
+        // Load template (cached after first load)
+        const template = await BorrowForm._loadTemplate();
+
+        if (!template) {
+            throw new Error('Failed to load BorrowForm template');
+        }
+
+        // Populate template
+        const modal = BorrowForm._populateTemplate(template, mode, book, books);
+
+        // Setup event listeners
+        BorrowForm._setupEventListeners(modal, mode, book, books, onSubmit);
+
+        return modal;
+    }
 
     /**
      * Populate template with book data based on mode
