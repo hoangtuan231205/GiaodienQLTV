@@ -1,4 +1,5 @@
-FROM php:8.2-apache
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-RUN a2enmod rewrite
-WORKDIR /var/www/html
+FROM nginx:alpine
+RUN rm -rf /usr/share/nginx/html/*
+COPY . /usr/share/nginx/html/
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
