@@ -1,6 +1,6 @@
 class BookModel {
   constructor() {
-    this.apiUrl = "http://localhost:8080/api/v1/books";
+    this.apiUrl = "/api/v1/books";
     this.allBooks = []; // Bộ nhớ đệm chứa toàn bộ sách từ Server
   }
 
@@ -112,7 +112,7 @@ class BookModel {
     const formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("http://localhost:8080/api/v1/upload", {
+    const res = await fetch("/api/v1/upload", {
       method: "POST",
       headers: this.getHeaders(true), // isUpload = true để không có Content-Type JSON
       body: formData,

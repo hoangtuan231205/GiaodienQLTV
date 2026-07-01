@@ -1,6 +1,6 @@
 class UserLoanModel {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/api/v1/loans/user';
+        this.apiUrl = '/api/v1/loans/user';
     }
 
     // Hàm gọi API lấy danh sách phiếu mượn
@@ -19,11 +19,11 @@ class UserLoanModel {
             }
 
             const responseData = await response.json();
-            return responseData.data || responseData.content || responseData; 
+            return responseData.data || responseData.content || responseData;
 
         } catch (error) {
             console.error("Lỗi Model:", error);
-            throw error; 
+            throw error;
         }
     }
 }

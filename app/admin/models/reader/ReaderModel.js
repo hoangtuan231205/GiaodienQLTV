@@ -1,6 +1,6 @@
 class ReaderModel {
   constructor() {
-    this.apiUrl = "http://localhost:8080/api/v1/users";
+    this.apiUrl = "/api/v1/users";
   }
 
   // Hàm sinh Headers thông minh

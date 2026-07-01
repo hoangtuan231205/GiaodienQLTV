@@ -5,8 +5,8 @@
  */
 class AllBooksModel {
     constructor() {
-        this.apiBooksUrl = 'http://localhost:8080/api/v1/books';
-        this.apiCategoriesUrl = 'http://localhost:8080/api/v1/categories';
+        this.apiBooksUrl = '/api/v1/books';
+        this.apiCategoriesUrl = '/api/v1/categories';
     }
 
     /**

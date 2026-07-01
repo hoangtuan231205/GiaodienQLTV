@@ -1,6 +1,6 @@
 class ReservationModel {
     constructor() {
-        this.baseUrl = 'http://localhost:8080/api/v1/reservations';
+        this.baseUrl = '/api/v1/reservations';
     }
 
     async fetchReservations() {

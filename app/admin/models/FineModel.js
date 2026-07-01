@@ -1,6 +1,6 @@
 class FineModel {
     constructor() {
-        this.baseUrl = 'http://localhost:8080/api/v1/fines';
+        this.baseUrl = '/api/v1/fines';
     }
 
     // 1. Lấy danh sách phạt
@@ -35,7 +35,7 @@ class FineModel {
                     "Authorization": `Bearer ${token}`
                 }
             });
-            
+
             if (!response.ok) {
                 const errorMsg = await response.text();
                 throw new Error(errorMsg);
@@ -51,14 +51,14 @@ class FineModel {
         try {
             const token = localStorage.getItem("token");
             const response = await fetch(this.baseUrl, {
-                method: 'POST', 
+                method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(fineData)
             });
-            
+
             if (!response.ok) {
                 const errorMsg = await response.text();
                 throw new Error(errorMsg);

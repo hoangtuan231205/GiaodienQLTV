@@ -1,14 +1,14 @@
 class CategoryModel {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/api/v1/categories';
+        this.apiUrl = '/api/v1/categories';
     }
 
     // Hàm phụ để lấy token từ localStorage 
     getHeaders() {
-        const token = localStorage.getItem('token'); 
+        const token = localStorage.getItem('token');
         return {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` 
+            'Authorization': `Bearer ${token}`
         };
     }
 
@@ -16,13 +16,13 @@ class CategoryModel {
         try {
             const response = await fetch(this.apiUrl, {
                 method: 'GET',
-                headers: this.getHeaders() 
-            }); 
-            
+                headers: this.getHeaders()
+            });
+
             // Xử lý lỗi 401 hoặc 500 từ server
             if (!response.ok) throw new Error('Lỗi kết nối API hoặc Token hết hạn');
             return await response.json();
-            
+
         } catch (error) {
             console.error("Không thể lấy dữ liệu danh mục:", error);
             // Trả về mảng rỗng để tránh lỗi "undefined" ở View
@@ -37,7 +37,7 @@ class CategoryModel {
                 method: 'GET',
                 headers: this.getHeaders()
             });
-            
+
             if (!response.ok) throw new Error('Lỗi khi tìm kiếm hoặc không có quyền');
             return await response.json();
         } catch (error) {
@@ -57,23 +57,23 @@ class CategoryModel {
     }
 
     async updateCategory(id, categoryData) {
-    // Ép kiểu ID sang số nguyên để xóa sạch mọi ký tự lạ (như dấu : hoặc khoảng trắng)
-    const cleanId = parseInt(id); 
+        // Ép kiểu ID sang số nguyên để xóa sạch mọi ký tự lạ (như dấu : hoặc khoảng trắng)
+        const cleanId = parseInt(id);
 
-    // Kiểm tra nếu ID không phải là số thì báo lỗi luôn không gọi API nữa
-    if (isNaN(cleanId)) throw new Error("ID danh mục không hợp lệ");
+        // Kiểm tra nếu ID không phải là số thì báo lỗi luôn không gọi API nữa
+        if (isNaN(cleanId)) throw new Error("ID danh mục không hợp lệ");
 
-    const response = await fetch(`${this.apiUrl}/${cleanId}`, {
-        method: 'PUT',
-        headers: this.getHeaders(),
-        body: JSON.stringify(categoryData)
-    });
+        const response = await fetch(`${this.apiUrl}/${cleanId}`, {
+            method: 'PUT',
+            headers: this.getHeaders(),
+            body: JSON.stringify(categoryData)
+        });
 
-    if (!response.ok) {
-        // Thử lấy thông báo lỗi chi tiết từ Backend trả về
-        const errorDetail = await response.json().catch(() => ({}));
-        throw new Error(errorDetail.message || 'Không thể cập nhật danh mục!');
-    }
+        if (!response.ok) {
+            // Thử lấy thông báo lỗi chi tiết từ Backend trả về
+            const errorDetail = await response.json().catch(() => ({}));
+            throw new Error(errorDetail.message || 'Không thể cập nhật danh mục!');
+        }
     }
 
     async deleteCategory(id) {

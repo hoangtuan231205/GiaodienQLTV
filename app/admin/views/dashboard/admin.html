@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +10,26 @@
     <link rel="stylesheet" href="../../../../assets/css/admin/admin-style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body class="bg-light">
 
     <div class="d-flex" id="wrapper">
-        
+
         <div id="sidebar-container"></div>
 
         <div id="page-content-wrapper" class="flex-grow-1">
-            
+
             <div id="header-container"></div>
 
             <div class="container-fluid px-4 py-4" id="main-content">
-    
+
                 <div class="row g-4 mb-4">
                     <div class="col-xl-3 col-md-6">
                         <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div class="icon-box icon-box-primary"><i class="fas fa-book"></i></div>
-                                <span class="badge badge-soft-success rounded-pill px-2 py-1"><i class="fas fa-arrow-trend-up me-1"></i>+5%</span>
+                                <span class="badge badge-soft-success rounded-pill px-2 py-1"><i
+                                        class="fas fa-arrow-trend-up me-1"></i>+5%</span>
                             </div>
                             <p class="text-muted mb-1 fs-6">Tổng số sách</p>
                             <h3 id="total-books-count" class="fw-bold mb-0">0</h3>
@@ -36,7 +39,8 @@
                         <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div class="icon-box icon-box-purple"><i class="fas fa-clipboard-list"></i></div>
-                                <span class="badge badge-soft-success rounded-pill px-2 py-1"><i class="fas fa-arrow-trend-up me-1"></i>+12%</span>
+                                <span class="badge badge-soft-success rounded-pill px-2 py-1"><i
+                                        class="fas fa-arrow-trend-up me-1"></i>+12%</span>
                             </div>
                             <p class="text-muted mb-1 fs-6">Sách đang mượn</p>
                             <h3 id="borrowed-books-count" class="fw-bold mb-0">0</h3>
@@ -46,7 +50,8 @@
                         <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div class="icon-box icon-box-info"><i class="fas fa-user-plus"></i></div>
-                                <span class="badge badge-soft-success rounded-pill px-2 py-1"><i class="fas fa-arrow-trend-up me-1"></i>+2%</span>
+                                <span class="badge badge-soft-success rounded-pill px-2 py-1"><i
+                                        class="fas fa-arrow-trend-up me-1"></i>+2%</span>
                             </div>
                             <p class="text-muted mb-1 fs-6">Độc giả mới</p>
                             <h3 id="new-readers-count" class="fw-bold mb-0">0</h3>
@@ -56,7 +61,8 @@
                         <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div class="icon-box icon-box-danger"><i class="fas fa-exclamation-triangle"></i></div>
-                                <span class="badge badge-soft-danger rounded-pill px-2 py-1"><i class="fas fa-arrow-trend-down me-1"></i>-5%</span>
+                                <span class="badge badge-soft-danger rounded-pill px-2 py-1"><i
+                                        class="fas fa-arrow-trend-down me-1"></i>-5%</span>
                             </div>
                             <p class="text-muted mb-1 fs-6">Sách quá hạn</p>
                             <h3 id="overdue-books-count" class="fw-bold mb-0">0</h3>
@@ -69,29 +75,29 @@
                         <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
                             <div class="d-flex justify-content-between align-items-start mb-4">
                                 <div>
-                                <h5 class="fw-bold mb-1">Thống kê mượn trả</h5>
-                                <small class="text-muted">Số liệu 12 tháng gần nhất</small>
+                                    <h5 class="fw-bold mb-1">Thống kê mượn trả</h5>
+                                    <small class="text-muted">Số liệu 12 tháng gần nhất</small>
                                 </div>
                                 <div class="text-end">
-                                <h4 id="total-chart-count" class="fw-bold mb-0">0</h4>
+                                    <h4 id="total-chart-count" class="fw-bold mb-0">0</h4>
                                 </div>
                             </div>
                             <div style="height: 250px;">
-                            <canvas id="borrowingChart"></canvas>
+                                <canvas id="borrowingChart"></canvas>
                             </div>
                         </div>
                     </div>
 
-                        <div class="col-xl-4">
-                            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-                                <h5 class="fw-bold mb-4">Top sách phổ biến</h5>
-                                <!-- Nơi chứa danh sách sách -->
-                                <div id="top-books-list">
-                                    <!-- Loading hoặc placeholder -->
-                                    <p class="text-muted">Đang tải dữ liệu...</p>
-                                </div>
+                    <div class="col-xl-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                            <h5 class="fw-bold mb-4">Top sách phổ biến</h5>
+                            <!-- Nơi chứa danh sách sách -->
+                            <div id="top-books-list">
+                                <!-- Loading hoặc placeholder -->
+                                <p class="text-muted">Đang tải dữ liệu...</p>
                             </div>
                         </div>
+                    </div>
                 </div>
 
                 <div class="card border-0 shadow-sm rounded-4 p-4">
@@ -114,7 +120,7 @@
                                 <tr>
                                     <td colspan="7" class="text-center text-muted py-4">Đang tải dữ liệu...</td>
                                 </tr>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -132,37 +138,37 @@
             // Tự lùi ra 2 cấp (dashboard -> views -> admin) rồi chui vào components
             ComponentLoader.load('sidebar-container', '../../components/sidebar.html');
             ComponentLoader.load('header-container', '../../components/header.html');
-             // 2. Gọi hàm lấy dữ liệu thống kê và dữ liệu biểu đồ
-        loadDashboardStats();
-        loadChartData();
-        loadTopBooks();
-        loadRecentLoans();
+            // 2. Gọi hàm lấy dữ liệu thống kê và dữ liệu biểu đồ
+            loadDashboardStats();
+            loadChartData();
+            loadTopBooks();
+            loadRecentLoans();
         });
         async function loadRecentLoans() {
-    try {
-        const response = await fetch('http://localhost:8080/api/v1/loans/recent', {
-            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
-        });
-        const loans = await response.json();
-        renderRecentLoans(loans);
-    } catch (error) {
-        console.error('Lỗi khi lấy danh sách mượn trả:', error);
-    }
-}
+            try {
+                const response = await fetch('/api/v1/loans/recent', {
+                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+                });
+                const loans = await response.json();
+                renderRecentLoans(loans);
+            } catch (error) {
+                console.error('Lỗi khi lấy danh sách mượn trả:', error);
+            }
+        }
 
-function renderRecentLoans(loans) {
-    const container = document.getElementById('recent-loans-list'); // Đảm bảo ID này khớp với thẻ <tbody> trong HTML
-    container.innerHTML = '';
+        function renderRecentLoans(loans) {
+            const container = document.getElementById('recent-loans-list'); // Đảm bảo ID này khớp với thẻ <tbody> trong HTML
+            container.innerHTML = '';
 
-    loans.forEach(loan => {
-        const [bookCode, title, readerName, borrowDate, status] = loan;
-        
-        // Logic màu sắc cho Trạng thái
-        let statusClass = 'bg-warning text-dark'; // Mặc định: Đang mượn
-        if (status === 'Quá hạn') statusClass = 'bg-danger-subtle text-danger';
-        if (status === 'Đã trả') statusClass = 'bg-success-subtle text-success';
+            loans.forEach(loan => {
+                const [bookCode, title, readerName, borrowDate, status] = loan;
 
-        const row = `
+                // Logic màu sắc cho Trạng thái
+                let statusClass = 'bg-warning text-dark'; // Mặc định: Đang mượn
+                if (status === 'Quá hạn') statusClass = 'bg-danger-subtle text-danger';
+                if (status === 'Đã trả') statusClass = 'bg-success-subtle text-success';
+
+                const row = `
             <tr>
                 <td class="text-muted small">${bookCode}</td>
                 <td><span class="fw-bold text-truncate d-block" style="max-width: 200px;">${title}</span></td>
@@ -182,41 +188,41 @@ function renderRecentLoans(loans) {
                 </td>
             </tr>
         `;
-        container.innerHTML += row;
-    });
-}
+                container.innerHTML += row;
+            });
+        }
         async function loadTopBooks() {
-    try {
-        const response = await fetch('http://localhost:8080/api/v1/books/top-popular', {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            try {
+                const response = await fetch('/api/v1/books/top-popular', {
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                });
+                const books = await response.json();
+                console.log("Dữ liệu nhận được:", books); // Kiểm tra dữ liệu nhận được từ API
+                renderTopBooks(books);
+            } catch (error) {
+                console.error('Lỗi khi lấy top sách:', error);
             }
-        });
-        const books = await response.json();
-        console.log("Dữ liệu nhận được:", books); // Kiểm tra dữ liệu nhận được từ API
-        renderTopBooks(books);
-    } catch (error) {
-        console.error('Lỗi khi lấy top sách:', error);
-    }
-    }
+        }
 
-function renderTopBooks(books) {
-    const container = document.getElementById('top-books-list');
-    container.innerHTML = ''; // Xóa nội dung cũ
+        function renderTopBooks(books) {
+            const container = document.getElementById('top-books-list');
+            container.innerHTML = ''; // Xóa nội dung cũ
 
-    // Mảng màu sắc cho icon sách để nhìn cho đa dạng (giống ảnh mẫu)
-    const colors = [
-        { bg: '#d1e7dd', border: '#198754' }, // Xanh lá
-        { bg: '#cff4fc', border: '#0dcaf0' }, // Xanh dương nhạt
-        { bg: '#e2e3e5', border: '#6c757d' }, // Xám
-        { bg: '#cfe2ff', border: '#0d6efd' }  // Xanh dương
-    ];
+            // Mảng màu sắc cho icon sách để nhìn cho đa dạng (giống ảnh mẫu)
+            const colors = [
+                { bg: '#d1e7dd', border: '#198754' }, // Xanh lá
+                { bg: '#cff4fc', border: '#0dcaf0' }, // Xanh dương nhạt
+                { bg: '#e2e3e5', border: '#6c757d' }, // Xám
+                { bg: '#cfe2ff', border: '#0d6efd' }  // Xanh dương
+            ];
 
-    books.forEach((book, index) => {
-        const title = book[0]; 
-        const author = book[1];
-        const color = colors[index % colors.length];
-        const bookHtml = `
+            books.forEach((book, index) => {
+                const title = book[0];
+                const author = book[1];
+                const color = colors[index % colors.length];
+                const bookHtml = `
             <div class="d-flex align-items-center mb-4">
                 <div class="me-3 fw-bold text-muted" style="width: 25px;">
                     #${index + 1}
@@ -230,119 +236,120 @@ function renderTopBooks(books) {
                 </div>
             </div>
         `;
-        container.innerHTML += bookHtml;
-    });
-    }
+                container.innerHTML += bookHtml;
+            });
+        }
         async function loadChartData() {
-    // Lấy token từ nơi ông lưu khi login (ví dụ localStorage)
-    const token = localStorage.getItem('token'); 
+            // Lấy token từ nơi ông lưu khi login (ví dụ localStorage)
+            const token = localStorage.getItem('token');
 
-    try {
-        const response = await fetch('http://localhost:8080/api/admin/dashboard/chart', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`, // Gửi kèm token
-                'Content-Type': 'application/json'
-            }
-        });
+            try {
+                const response = await fetch('http://localhost:8080/api/admin/dashboard/chart', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`, // Gửi kèm token
+                        'Content-Type': 'application/json'
+                    }
+                });
 
-        if (response.status === 401) {
-            console.error("Lỗi 401: Token không hợp lệ hoặc hết hạn!");
-            return;
-        }
-
-        const data = await response.json();
-        
-        if (Array.isArray(data)) {
-            renderChart(data); // Tách hàm render ra cho sạch code
-        }
-    } catch (error) {
-        console.error("Lỗi kết nối:", error);
-    }
-    }
-    async function loadDashboardStats() {
-    try {
-        const token = localStorage.getItem('token'); 
-        const response = await fetch('http://localhost:8080/api/admin/dashboard/stats', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Dữ liệu thực tế từ Backend:", data); // Dòng này cực quan trọng để kiểm tra tên trường
-
-            // Thêm toán tử || 0 để tránh lỗi 'undefined'
-            document.getElementById('total-books-count').innerText = (data.totalBooks || 0).toLocaleString();
-            document.getElementById('borrowed-books-count').innerText = (data.borrowedBooks || 0).toLocaleString();
-            document.getElementById('new-readers-count').innerText = (data.newReaders || 0).toLocaleString();
-            document.getElementById('overdue-books-count').innerText = (data.overdueBooks || 0).toLocaleString();
-            
-        } else {
-            console.error("Lỗi API:", response.status);
-        }
-    } catch (error) {
-        console.error("Không thể kết nối đến Backend:", error);
-        }
-    }
-    // Hàm vẽ biểu đồ sử dụng thư viện Chart.js
-function renderChart(data) {
-    if (!data || data.length === 0) {
-        console.warn("Dữ liệu API biểu đồ trống!");
-        return;
-    }
-
-    const ctx = document.getElementById('borrowingChart').getContext('2d');
-    const labels = data.map(item => item.label); // Lấy trường "label" (03/2026, 04/2026...)
-    const values = data.map(item => item.value); // Lấy trường "value" (1, 3, 1...)
-
-    // Tính tổng để hiển thị ở góc (nếu cần)
-    const total = values.reduce((a, b) => a + b, 0);
-    const totalElement = document.getElementById('total-chart-count');
-    if (totalElement) totalElement.innerText = total.toLocaleString();
-
-    // Xóa biểu đồ cũ nếu đã tồn tại để tránh lỗi ghi đè (tùy chọn)
-    if (window.myChart) {
-        window.myChart.destroy();
-    }
-
-    // Tạo biểu đồ đường (Line Chart)
-    window.myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Lượt mượn sách',
-                data: values,
-                borderColor: '#4e73df',
-                backgroundColor: 'rgba(78, 115, 223, 0.1)',
-                fill: true,
-                tension: 0.4, // Tạo độ cong cho đường kẻ
-                borderWidth: 3,
-                pointRadius: 4,
-                pointBackgroundColor: '#4e73df'
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false } // Ẩn chú thích cho gọn
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { stepSize: 1 }
-                },
-                x: {
-                    grid: { display: false }
+                if (response.status === 401) {
+                    console.error("Lỗi 401: Token không hợp lệ hoặc hết hạn!");
+                    return;
                 }
+
+                const data = await response.json();
+
+                if (Array.isArray(data)) {
+                    renderChart(data); // Tách hàm render ra cho sạch code
+                }
+            } catch (error) {
+                console.error("Lỗi kết nối:", error);
             }
         }
-    });
-    }
+        async function loadDashboardStats() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://localhost:8080/api/admin/dashboard/stats', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("Dữ liệu thực tế từ Backend:", data); // Dòng này cực quan trọng để kiểm tra tên trường
+
+                    // Thêm toán tử || 0 để tránh lỗi 'undefined'
+                    document.getElementById('total-books-count').innerText = (data.totalBooks || 0).toLocaleString();
+                    document.getElementById('borrowed-books-count').innerText = (data.borrowedBooks || 0).toLocaleString();
+                    document.getElementById('new-readers-count').innerText = (data.newReaders || 0).toLocaleString();
+                    document.getElementById('overdue-books-count').innerText = (data.overdueBooks || 0).toLocaleString();
+
+                } else {
+                    console.error("Lỗi API:", response.status);
+                }
+            } catch (error) {
+                console.error("Không thể kết nối đến Backend:", error);
+            }
+        }
+        // Hàm vẽ biểu đồ sử dụng thư viện Chart.js
+        function renderChart(data) {
+            if (!data || data.length === 0) {
+                console.warn("Dữ liệu API biểu đồ trống!");
+                return;
+            }
+
+            const ctx = document.getElementById('borrowingChart').getContext('2d');
+            const labels = data.map(item => item.label); // Lấy trường "label" (03/2026, 04/2026...)
+            const values = data.map(item => item.value); // Lấy trường "value" (1, 3, 1...)
+
+            // Tính tổng để hiển thị ở góc (nếu cần)
+            const total = values.reduce((a, b) => a + b, 0);
+            const totalElement = document.getElementById('total-chart-count');
+            if (totalElement) totalElement.innerText = total.toLocaleString();
+
+            // Xóa biểu đồ cũ nếu đã tồn tại để tránh lỗi ghi đè (tùy chọn)
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Tạo biểu đồ đường (Line Chart)
+            window.myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Lượt mượn sách',
+                        data: values,
+                        borderColor: '#4e73df',
+                        backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                        fill: true,
+                        tension: 0.4, // Tạo độ cong cho đường kẻ
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#4e73df'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false } // Ẩn chú thích cho gọn
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </body>
+
 </html>

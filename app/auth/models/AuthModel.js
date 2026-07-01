@@ -1,7 +1,7 @@
 class AuthModel {
   constructor() {
     // API Endpoint gốc cho auth. Hãy thay đổi nếu API thực tế của bạn khác
-    this.apiUrl = "http://localhost:8080/api/v1/auth";
+    this.apiUrl = "/api/v1/auth";
   }
 
   // Hàm xử lý gọi API Đăng nhập

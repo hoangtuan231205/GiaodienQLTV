@@ -5,8 +5,8 @@
  */
 class ReservationModel {
     constructor() {
-        this.apiUrl = 'http://localhost:8080/api/v1/reservations';
-        this.apiAuthorsUrl = 'http://localhost:8080/api/v1/authors';
+        this.apiUrl = '/api/v1/reservations';
+        this.apiAuthorsUrl = '/api/v1/authors';
         // Cache authors để tránh fetch nhiều lần
         this.authorsCache = new Map();
     }
@@ -179,7 +179,7 @@ class ReservationModel {
      */
     async getAvailableBooks() {
         try {
-            const apiBooksUrl = 'http://localhost:8080/api/v1/books';
+            const apiBooksUrl = '/api/v1/books';
             const data = await this._fetchAPI(apiBooksUrl, 'GET');
 
             // Handle both array and object response formats

@@ -87,7 +87,7 @@ class ReservationController {
                         const token = localStorage.getItem("token");
 
                         // Gọi API chuyển đổi từ Phiếu đặt -> Phiếu mượn
-                        const response = await fetch(`http://localhost:8080/api/v1/loans/from-reservation/${id}`, {
+                        const response = await fetch(`/api/v1/loans/from-reservation/${id}`, {
                             method: "POST",
                             headers: {
                                 "Authorization": `Bearer ${token}`,

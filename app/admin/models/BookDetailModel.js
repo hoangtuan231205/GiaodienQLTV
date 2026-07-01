@@ -5,7 +5,7 @@
 class BookDetailModel {
     constructor() {
         // Cấu hình URL cơ sở của API Spring Boot
-        this.apiUrl = 'http://localhost:8080/api/v1/books';
+        this.apiUrl = '/api/v1/books';
     }
 
     /**
