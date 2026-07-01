@@ -5,3 +5,4 @@ services:
     ports:
       - "80:80" # Map cổng 80 của Server vào cổng 80 của Nginx
     restart: always
+    
