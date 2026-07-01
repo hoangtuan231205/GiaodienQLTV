@@ -68,3 +68,4 @@ class PublisherController {
     this.view.renderPublishers(filtered);
 }
 }
+// done publisher controller
