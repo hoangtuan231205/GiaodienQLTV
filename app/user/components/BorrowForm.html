@@ -10,7 +10,21 @@
                 </button>
             </div>
 
+            <form id="borrow-form" class="borrow-form">
+                <!-- Book Selection (dropdown mode) -->
+                <div class="form-group" id="book-select-group" style="display:none;">
+                    <label for="book-select">Chọn Sách <span class="required">*</span></label>
+                    <select id="book-select" name="bookSelect" class="form-control">
+                        <option value="">-- Chọn một sách --</option>
+                    </select>
+                </div>
 
+                <!-- Book Title (display mode - single book) -->
+                <div class="form-group" id="book-title-group">
+                    <label for="book-title-display">Tên Sách</label>
+                    <input type="text" id="book-title-display" class="form-control" readonly>
+                    <input type="hidden" id="book-id" name="bookId" value="">
+                </div>
 
                 <!-- Form Actions -->
                 <div class="form-actions">
