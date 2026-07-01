@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
-  frontend_thu_vien:
+  web-frontend:
     build: .
-    container_name: nginx_frontend_server
-    restart: always
+    container_name: fe_thu_vien
     ports:
-      - "8080:80"
+      - "80:80" # Map cổng 80 của Server vào cổng 80 của Nginx
+    restart: always

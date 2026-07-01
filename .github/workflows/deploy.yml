@@ -2,14 +2,16 @@ name: Deploy Frontend
 
 on:
   push:
-    branches:
-      - main
+    branches: ["master"]
 
 jobs:
-  deploy-frontend:
+  deploy:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
-      - run: sudo docker compose down
-      - run: sudo docker compose up -d --build
-      - run: sudo docker ps
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy with Docker
+        run: |
+          docker compose down
+          docker compose up -d --build
