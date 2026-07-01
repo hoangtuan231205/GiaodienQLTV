@@ -54,7 +54,7 @@ class FineView {
             const btnPay = e.target.closest(".btn-pay-fine");
             if (btnPay) {
                 const fineId = btnPay.dataset.id;
-                if (confirm("Xác nhận độc giả đã thanh toán khoản phạt này?")) {
+                if (confirm("Xác nhận độc giả đã thanh toán!")) {
                     payHandler(fineId);
                 }
             }
